@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
 const PORT = process.env.PORT || 5000
 
 const options = {
@@ -17,7 +19,13 @@ const options = {
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
+const MONGODB_URL = 'mongodb+srv://sarii96:Patricia96@cluster0.q3479.mongodb.net/shop?';
+
 const app = express();
+const store = new MongoDBStore({
+  uri: MONGODB_URL,
+  collection: 'sessions'
+});
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -28,17 +36,20 @@ const autheRoutes = require('./routes/authe');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:'my secret', resave: false, saveUninitialized: false,}))
+app.use(session({secret:'my secret', resave: false, saveUninitialized: false, store: store}));
 
-app.use((req, res, next) => {
-  User.findById('601dace927ee6e18bc4f766e')
-    .then(user => {
-      req.user = user;
-      next();
-    })
-    .catch(err => console.log(err));
-});
-
+app.use((req, res, next)=>{
+  if(!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+        .then(user => {
+          req.user = User;
+          next();
+        })
+        .catch(err => console.log(err));
+})
+//601dace927ee6e18bc4f766e
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(autheRoutes);
@@ -47,22 +58,11 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    'mongodb+srv://sarii96:Patricia96@cluster0.q3479.mongodb.net/shop?retryWrites=true&w=majority', options
+    MONGODB_URL
   )
 
   .then(result => {
-    User.findOne().then(user => {
-      if (!user) {
-        const user = new User({
-          name: 'Sarah',
-          email: 'sarah-96325@hotmail.com',
-          cart: {
-            items: []
-          }
-        });
-        user.save();
-      }
-    });
+   
     app.listen(PORT);
   })
   .catch(err => {
