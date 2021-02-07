@@ -7,7 +7,7 @@ exports.getLogin = (req, res, next) => {
         res.render('authe/login', {
           path: '/login',
           pageTitle: 'Login',
-          isAuthenticated: alse
+          isAuthenticated: false
            });
      
   };
