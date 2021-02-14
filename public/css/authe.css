@@ -3,4 +3,8 @@
     max-width: 90%;
     margin: auto;
     display: block;
+    background-color: whitesmoke;
+    padding: 1em;
+    border-radius: 20px;
+    margin-top: 1em;
 }

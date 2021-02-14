@@ -6,6 +6,14 @@
     <%- include('../includes/navigation.ejs') %>
 
     <main>
+        <div class="hero-image">
+            <div class="hero-text">
+                <h1 style="font-size:50px">El Rincon del Libro</h1>
+                <p>A website where you can find and buy the best books</p>
+                <button>Click Here</button>
+            </div>
+        </div>
+        <h2>New Arrivals!</h2>
         <% if (prods.length > 0) { %>
         <div class="grid">
             <% for (let product of prods) { %>

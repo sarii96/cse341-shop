@@ -1,18 +1,56 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Cutive&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
+html{
+  background-color: #F2A7B5;
+}
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Cutive', serif;
+}
+.hero-text{
+  text-align: center;
+  color: white;
+  padding: 1em;
+}
+.hero-image{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url(https://www.mainejewish.org/wp-content/uploads/2017/07/Books-Banner.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  /* border-radius: 1em; */
+}
+.hero-text h1{
+  margin-bottom: 1px;
+}
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 25px;
+  color: white;
+  background-color:#46788C;
+  text-align: center;
+  cursor: pointer;
+  border-radius: .5em;
+  font-size: 14px;
+ font-family:  'Cutive', serif;
+ margin-bottom: 1em;
+ margin-top: 1em;
+}
+h2{
+  text-align: center;
+  color:#46788C
 }
 
 main {
-  padding: 1rem;
+  /* padding: 1rem; */
   margin: auto;
+  /* background-color: #F2A7B5; */
 }
 
 form {
@@ -34,7 +72,7 @@ form {
 .main-header {
   width: 100%;
   height: 3.5rem;
-  background-color: #69000e;
+  background-color: #46788C;
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
@@ -53,11 +91,15 @@ form {
   margin: 0;
   padding: 0;
   display: flex;
+ 
 }
+
 
 .main-header__item {
   margin: 0 1rem;
   padding: 0;
+  list-style: none;
+  display: inline-flex;
 }
 
 .main-header__item a {
@@ -153,6 +195,7 @@ form {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: stretch;
+  margin-top: 1em;
 }
 
 .card {
@@ -194,8 +237,8 @@ form {
   padding: 0.25rem 1rem;
   text-decoration: none;
   font: inherit;
-  border: 1px solid #69000e;
-  color: #69000e;
+  border: 1px solid #46788C;
+  color: #46788C;
   background: white;
   border-radius: 3px;
   cursor: pointer;

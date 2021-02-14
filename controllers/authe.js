@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const { render } = require('pug');
 const User = require('../models/user');
 
+
 exports.getLogin = (req, res, next) => {
         console.log(req.session.isLoggedIn);
         res.render('authe/login', {
